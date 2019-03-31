@@ -1,4 +1,4 @@
-//#include "Student.h"
+#include "Student.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -7,15 +7,10 @@ using namespace std;
 double calc_average(vector<double> &s, double m1, double m2, double f);
   int main()
   {
-    //vector<Student> course;
-    vector<double> scores = {9.5, 7.6, 9.8, 5.4, 1.4};
+    vector<Student> course;
+    vector<double> scores;
     double midterm1, midterm2, final, overall_avg;
-    midterm1 = 56.3;
-    midterm2 = 98.6;
-    final = 98.2;
-    overall_avg = calc_average(scores, midterm1, midterm2, final);
-    cout << overall_avg;
-    /*ifstream myfile;
+    ifstream myfile;
     string filepath;
     cout << "Enter file name: ";
     getline(cin, filepath);
@@ -29,26 +24,24 @@ double calc_average(vector<double> &s, double m1, double m2, double f);
     int index = 0;
     int i = 0;
     myfile >> index;
-    subjects.resize(index);
+    course.resize(index);
     while(!myfile.eof() && i < index){
-      myfile >> d >> n >> s >> e;
-      subjects[i].setDepartment(d);
-      subjects[i].setNumber(n);
-      subjects[i].setSection(s);
-      subjects[i].setStudents(e);
-      i++;
+
     }
-    myfile.close();*/
+    myfile.close();
 
   }
   double calc_average(vector<double> &s, double m1, double m2, double f)
   {
-    double s_total = 10.2;
-    sort(s.begin(), s.end());
-    s[0].clear();
+    double s_total, s_average, end_average;
+    sort(s.rbegin(), s.rend());
+    s.pop_back();
     for(int i = 0; i < s.size(); i++)
     {
-      cout << s[i] << " ";
+      s_total += s[i];
     }
-    return s_total;
+    s_average = (s_total / s.size()) / 10.0;
+    end_average = (s_total * .20) + (m1 * .20) + (m2 * .20) + (f * .40);
+
+    return end_average;
   }

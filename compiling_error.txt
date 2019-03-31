@@ -1,4 +1,2 @@
-C:\Users\josue\OneDrive\Documents\css2proj\project1.cpp: In function 'double calc_average(std::vector<double>&, double, double, double)':
-C:\Users\josue\OneDrive\Documents\css2proj\project1.cpp:48:10: error: request for member 'clear' in '(& s)->std::vector<_Tp, _Alloc>::operator[]<double, std::allocator<double> >(0u)', which is of non-class type '__gnu_cxx::__alloc_traits<std::allocator<double> >::value_type {aka double}'
-     s[0].clear();
-          ^~~~~
+C:\Users\josue\AppData\Local\Temp\ccfP3cCK.o:project1.cpp:(.text$_ZSt10_ConstructI7StudentJEEvPT_DpOT0_[__ZSt10_ConstructI7StudentJEEvPT_DpOT0_]+0x25): undefined reference to `Student::Student()'
+collect2.exe: error: ld returned 1 exit status
