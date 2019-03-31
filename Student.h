@@ -1,7 +1,8 @@
 #ifndef STUDENT_H
 #define STUDENT_H
 
-Class Student{
+class Student
+{
   private:
     string name;
     int id;
