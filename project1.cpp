@@ -8,13 +8,14 @@ double calc_average(double s1, double s2, double s3, double s4, double s5, doubl
 void label_rank(vector<Student> &s);
 void a_sort(vector<Student> &s);
 void n_sort(vector<Student> &s);
+double class_avg(vector<Student> &s);
+void histogram(vector<Student> &s);
   int main()
   {
     string n;
     int d;
     vector<Student> course;
     double score1, score2, score3, score4, score5, midterm1, midterm2, final, overall_avg;
-    cout << "nigger";
     ifstream myfile;
     string filepath;
     cout << "Enter file name: ";
@@ -31,17 +32,13 @@ void n_sort(vector<Student> &s);
     myfile >> index;
     course.resize(index);
     while(!myfile.eof() && i < index){
-      cout << "nigger";
         myfile >> n >> d >> score1 >> score2 >> score3 >> score4 >> score5 >> midterm1 >> midterm2 >> final;
-        cout << "nigger";
         course[i].setName(n);
         course[i].setID(d);
         course[i].setAverage(calc_average(score1, score2, score3, score4, score5, midterm1, midterm2, final));
         i++;
     }
-    cout << "nigger";
     myfile.close();
-    cout << "nigger";
     label_rank(course);
     cout << "================" << endl;
     cout << "Course Report: Numerical Average Order" << endl;
@@ -50,11 +47,21 @@ void n_sort(vector<Student> &s);
     cout << "================" << endl;
     cout << "Course Report: First Name Order" << endl;
     cout << "================" << endl;
+    n_sort(course);
+    cout << "================" << endl;
+    cout << endl;
+    cout << "================" << endl;
+    cout << "Statistics" << endl;
+    cout << "================" << endl;
+    cout << "Number of students: " << index << endl;
+    cout << "Class Average: " << class_avg(course) << endl;
+    cout << "Grade Distribution (histogram)"
+
   }
   double calc_average(double s1, double s2, double s3, double s4, double s5, double m1, double m2, double f)
   {
     vector<double> s = {s1 , s2, s3, s4, s5};
-    double s_total, s_average, end_average;
+    double s_total = 0, s_average = 0, end_average = 0;
     sort(s.rbegin(), s.rend());
     s.pop_back();
     for(int i = 0; i < s.size(); i++)
@@ -80,7 +87,7 @@ void n_sort(vector<Student> &s);
       }
     }
     s[0].setRank(1);
-    for (int i = i; i < s.size(); i++)
+    for (int i = 1; i < s.size(); i++)
     {
       if (s[i].getAverage() < s[i-1].getAverage())
       {
@@ -103,6 +110,13 @@ void n_sort(vector<Student> &s);
           s[j] = s[i];
           s[i] = avg_Top;
         }
+        else if (s[j].getAverage() == s[i].getAverage()){
+          if (s[j].getID() < s[i].getID()){
+            avg_Top = s[j];
+            s[j] = s[i];
+            s[i] = avg_Top;
+          }
+        }
       }
     }
     for(int a = 0; a < s.size(); a++){
@@ -114,14 +128,53 @@ void n_sort(vector<Student> &s);
     Student avg_Top;
     for (int j = 0; j < s.size() - 1; j++){
       for (int i = j + 1; i < s.size(); i++){
-        if (s[j].getName() < s[i].getName()){
+        if (s[j].getName() > s[i].getName()){
           avg_Top = s[j];
           s[j] = s[i];
           s[i] = avg_Top;
+        }
+        else if (s[j].getName() == s[i].getName()){
+          if (s[j].getID() < s[i].getID()){
+            avg_Top = s[j];
+            s[j] = s[i];
+            s[i] = avg_Top;
+          }
         }
       }
     }
     for(int a = 0; a < s.size(); a++){
       s[a].print();
+    }
+  }
+  double class_avg(vector<Student> &s)
+  {
+    double c_total = 0, c_average = 0;
+    for(int i = 0; i < s.size(); i++){
+      c_total += s[i].getAverage();
+    }
+    c_average = c_total / s.size();
+    return c_average;
+
+  }
+  void histogram(vector<Student> &s)
+  {
+    int a_count, b_count, c_count, d_count, f_count;
+    for (int i = 0; i < s.size(); i++){
+      
+      if(s[i].getGrade == "A"){
+        a_count++;
+      }
+      if(s[i].getGrade == "B"){
+        b_count++;
+      }
+      if(s[i].getGrade == "C"){
+        c_count++;
+      }
+      if(s[i].getGrade == "D"){
+        d_count++;
+      }
+      if(s[i].getGrade == "D"){
+        f_count++;
+      }
     }
   }
