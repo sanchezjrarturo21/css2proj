@@ -7,6 +7,9 @@ using namespace std;
 double calc_average(vector<double> &s, double m1, double m2, double f);
   int main()
   {
+    string n;
+    int d;
+    double s1, s2, s3;
     vector<Student> course;
     vector<double> scores;
     double midterm1, midterm2, final, overall_avg;
@@ -26,9 +29,11 @@ double calc_average(vector<double> &s, double m1, double m2, double f);
     myfile >> index;
     course.resize(index);
     while(!myfile.eof() && i < index){
-
+        myfile >> n >> d >> s1 >> s2 >> s3 >> midterm1 >> midterm2 >> final;
     }
     myfile.close();
+
+    cout << course[0].getName();
 
   }
   double calc_average(vector<double> &s, double m1, double m2, double f)
