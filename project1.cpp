@@ -9,7 +9,6 @@ double calc_average(vector<double> &s, double m1, double m2, double f);
   {
     string n;
     int d;
-    double s1, s2, s3;
     vector<Student> course;
     vector<double> scores;
     double midterm1, midterm2, final, overall_avg;
@@ -29,7 +28,10 @@ double calc_average(vector<double> &s, double m1, double m2, double f);
     myfile >> index;
     course.resize(index);
     while(!myfile.eof() && i < index){
-        myfile >> n >> d >> s1 >> s2 >> s3 >> midterm1 >> midterm2 >> final;
+        myfile >> n >> d >> scores[0] >> scores[1] >> scores[2] >> midterm1 >> midterm2 >> final;
+        course[i].setName() = n;
+        course[i].setID() = d;
+        course[i].setAverage() = calc_average(scores, midterm1, midterm2, final);
     }
     myfile.close();
 
