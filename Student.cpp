@@ -76,11 +76,5 @@ int Student::getRank() const{
 }
 
 void Student::print() const{
-  cout << "Name: " << name << endl;
-  cout << "ID: " << id << endl;
-  cout << "Average: " << average << endl;
-  cout << "Grade: " << grade << endl;
-  cout << "Rank: " << rank << endl;
-
-
+  cout << name << " " << id << " - " << average << "  (" << grade << ")  (rank: " << rank << ")" << endl;
 }

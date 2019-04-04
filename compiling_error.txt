@@ -1,2 +1,21 @@
-C:\Users\josue\AppData\Local\Temp\ccfP3cCK.o:project1.cpp:(.text$_ZSt10_ConstructI7StudentJEEvPT_DpOT0_[__ZSt10_ConstructI7StudentJEEvPT_DpOT0_]+0x25): undefined reference to `Student::Student()'
-collect2.exe: error: ld returned 1 exit status
+C:\Users\josue\OneDrive\Documents\css2proj\project1.cpp: In function 'void label_rank(std::vector<Student>&)':
+C:\Users\josue\OneDrive\Documents\css2proj\project1.cpp:59:12: error: 'class std::vector<Student>' has no member named 'getAverage'
+     sort(s.getAverage().rbegin(), s.getAverage().rend());
+            ^~~~~~~~~~
+C:\Users\josue\OneDrive\Documents\css2proj\project1.cpp:59:37: error: 'class std::vector<Student>' has no member named 'getAverage'
+     sort(s.getAverage().rbegin(), s.getAverage().rend());
+                                     ^~~~~~~~~~
+C:\Users\josue\OneDrive\Documents\css2proj\project1.cpp:63:38: error: invalid use of member 'double Student::getAverage() const' (did you forget the '&' ?)
+       if (s[i].getAverage() < s[i-1].getAverage)
+                                       
+C:\Users\josue\OneDrive\Documents\css2proj\project1.cpp:67:44: error: invalid use of member 'double Student::getAverage() const' (did you forget the '&' ?)
+       else if (s[i].getAverage() == s[i-1].getAverage)
+                                             
+C:\Users\josue\OneDrive\Documents\css2proj\project1.cpp:69:36: error: no matching function for call to 'Student::setRank(<unresolved overloaded function type>)'
+         s[i].setRank(s[i-1].getRank);
+                                    ^
+In file included from C:\Users\josue\OneDrive\Documents\css2proj\project1.cpp:1:0:
+C:\Users\josue\OneDrive\Documents\css2proj\Student.h:19:10: note: candidate: void Student::setRank(int)
+     void setRank(int rank);
+          ^~~~~~~
+C:\Users\josue\OneDrive\Documents\css2proj\Student.h:19:10: note:   no known conversion for argument 1 from '<unresolved overloaded function type>' to 'int'
