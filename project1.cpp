@@ -10,6 +10,7 @@ void a_sort(vector<Student> &s);
 void n_sort(vector<Student> &s);
 double class_avg(vector<Student> &s);
 void histogram(vector<Student> &s);
+void rec_finder(vector<Student> &s);
   int main()
   {
     string n;
@@ -55,7 +56,12 @@ void histogram(vector<Student> &s);
     cout << "================" << endl;
     cout << "Number of students: " << index << endl;
     cout << "Class Average: " << class_avg(course) << endl;
-    cout << "Grade Distribution (histogram)"
+    cout << "Grade Distribution (histogram)" << endl;
+    histogram(course);
+    cout << "================" << endl;
+    cout << endl;
+    cout << "================" << endl;
+    rec_finder(course);
 
   }
   double calc_average(double s1, double s2, double s3, double s4, double s5, double m1, double m2, double f)
@@ -158,23 +164,78 @@ void histogram(vector<Student> &s);
   }
   void histogram(vector<Student> &s)
   {
-    int a_count, b_count, c_count, d_count, f_count;
+    int a_count = 0, b_count = 0, c_count = 0, d_count = 0, f_count = 0;
     for (int i = 0; i < s.size(); i++){
-      
-      if(s[i].getGrade == "A"){
+      if(s[i].getGrade() == 'A'){
         a_count++;
       }
-      if(s[i].getGrade == "B"){
+      if(s[i].getGrade() == 'B'){
         b_count++;
       }
-      if(s[i].getGrade == "C"){
+      if(s[i].getGrade() == 'C'){
         c_count++;
       }
-      if(s[i].getGrade == "D"){
+      if(s[i].getGrade() == 'D'){
         d_count++;
       }
-      if(s[i].getGrade == "D"){
+      if(s[i].getGrade() == 'D'){
         f_count++;
       }
     }
+    cout << "A ";
+    for(int i = 0; i < a_count; i++){
+      cout << "* ";
+    }
+    cout << endl;
+    cout << "B ";
+    for(int i = 0; i < b_count; i++){
+      cout << "* ";
+    }
+    cout << endl;
+    cout << "C ";
+    for(int i = 0; i < c_count; i++){
+      cout << "* ";
+    }
+    cout << endl;
+    cout << "D ";
+    for(int i = 0; i < d_count; i++){
+      cout << "* ";
+    }
+    cout << endl;
+    cout << "F ";
+    for(int i = 0; i < f_count; i++){
+      cout << "* ";
+    }
+    cout << endl;
+  }
+  void rec_finder(vector<Student> &s)
+  {
+     char opt;
+     string find_student;
+    do{
+      cout << "Record Finder: Enter the name of a student: ";
+      cin >> find_student;
+      cout << "================" << endl;
+      for(int i = 0; i < s.size(); i++){
+        if (s[i].getName() == find_student){
+          s[i].print();
+          cout<<endl;
+          cout << "================" << endl;
+        }
+          else if(i == s.size()-1 && s[i].getName() != find_student) {
+            cout << "Fail. "<< find_student <<" isn't enrolled in this class." << endl;
+            cout << "================" << endl;
+
+        }
+
+      }
+      cout << "Do you want to continue? (y/n): ";
+      cin >> opt;
+      opt = toupper(opt);
+      if (opt == 'N'){
+        cout << "================" << endl;
+        cout << "Done."<< endl;
+      }
+    }
+    while( opt == 'Y');
   }
