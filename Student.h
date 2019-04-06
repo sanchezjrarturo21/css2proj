@@ -1,3 +1,17 @@
+/*
+Josue Guerrero
+Arturo Sanchez
+4/4/19
+Program creates student objects from a file and sorts them by their average,
+their first name, calculates a class average, allows a user to search for
+a specific student and creates a histogram.
+
+Credits:
+Arturo: all Student.h
+Josue: all Student.cpp
+Both: all project1.cpp
+*/
+
 #ifndef STUDENT_H
 #define STUDENT_H
 #include <iostream>

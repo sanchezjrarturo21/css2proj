@@ -1,3 +1,17 @@
+/*
+Josue Guerrero
+Arturo Sanchez
+4/4/19
+Program creates student objects from a file and sorts them by their average,
+their first name, calculates a class average, allows a user to search for
+a specific student and creates a histogram.
+
+Credits:
+Arturo: all Student.h
+Josue: all Student.cpp
+Both: all project1.cpp
+*/
+
 #include "Student.h"
 #include <iostream>
 #include <fstream>
@@ -19,10 +33,12 @@ void rec_finder(vector<Student> &s);
     double score1, score2, score3, score4, score5, midterm1, midterm2, final, overall_avg;
     ifstream myfile;
     string filepath;
+// user enters in file path
     cout << "Enter file name: ";
     getline(cin, filepath);
     cout << endl;
     myfile.open(filepath.c_str());
+// if file can't be found an error message is displayed
     if(myfile.fail())
     {
       cout <<" Failed to open file "<< endl;
@@ -30,6 +46,7 @@ void rec_finder(vector<Student> &s);
     }
     int index = 0;
     int i = 0;
+// reads from file and inputs the information from each line into an object
     myfile >> index;
     course.resize(index);
     while(!myfile.eof() && i < index){
@@ -40,14 +57,20 @@ void rec_finder(vector<Student> &s);
         i++;
     }
     myfile.close();
+
+
     label_rank(course);
     cout << "================" << endl;
     cout << "Course Report: Numerical Average Order" << endl;
     cout << "================" << endl;
+
+// calls function a_sort that sorts students by average
     a_sort(course);
     cout << "================" << endl;
     cout << "Course Report: First Name Order" << endl;
     cout << "================" << endl;
+
+// calls function n_sort that sorts students by first name
     n_sort(course);
     cout << "================" << endl;
     cout << endl;
@@ -55,15 +78,22 @@ void rec_finder(vector<Student> &s);
     cout << "Statistics" << endl;
     cout << "================" << endl;
     cout << "Number of students: " << index << endl;
+// calls function class_avg that calculates the class average and ouputs
     cout << "Class Average: " << class_avg(course) << endl;
-    cout << "Grade Distribution (histogram)" << endl;
+// calls function histogram that prints out grade distribution
+    cout << "Grade Distribution (histogrampy)" << endl;
     histogram(course);
     cout << "================" << endl;
     cout << endl;
     cout << "================" << endl;
+
+// calls function rec_finder that finds a student in a course
     rec_finder(course);
 
   }
+
+
+// function calculates average for a given student
   double calc_average(double s1, double s2, double s3, double s4, double s5, double m1, double m2, double f)
   {
     vector<double> s = {s1 , s2, s3, s4, s5};
@@ -79,6 +109,8 @@ void rec_finder(vector<Student> &s);
 
     return end_average;
   }
+
+// funtion ranks students
   void label_rank(vector<Student> &s)
   {
     int rank = 2;
@@ -106,6 +138,8 @@ void rec_finder(vector<Student> &s);
       rank++;
     }
   }
+
+// funtion sorts students by average
   void a_sort(vector<Student> &s)
   {
     Student avg_Top;
@@ -129,6 +163,8 @@ void rec_finder(vector<Student> &s);
       s[a].print();
     }
   }
+
+  // fuction sorts sudents by first name
   void n_sort(vector<Student> &s)
   {
     Student avg_Top;
@@ -152,6 +188,8 @@ void rec_finder(vector<Student> &s);
       s[a].print();
     }
   }
+
+  // function calculates class average
   double class_avg(vector<Student> &s)
   {
     double c_total = 0, c_average = 0;
@@ -162,6 +200,8 @@ void rec_finder(vector<Student> &s);
     return c_average;
 
   }
+
+  // function creates histogram
   void histogram(vector<Student> &s)
   {
     int a_count = 0, b_count = 0, c_count = 0, d_count = 0, f_count = 0;
@@ -208,27 +248,30 @@ void rec_finder(vector<Student> &s);
     }
     cout << endl;
   }
+
+  // function allows user to search for a specific student
   void rec_finder(vector<Student> &s)
   {
      char opt;
      string find_student;
+     bool student_found = false;
     do{
       cout << "Record Finder: Enter the name of a student: ";
       cin >> find_student;
       cout << "================" << endl;
       for(int i = 0; i < s.size(); i++){
         if (s[i].getName() == find_student){
+          student_found = true;
           s[i].print();
           cout<<endl;
           cout << "================" << endl;
         }
-          else if(i == s.size()-1 && s[i].getName() != find_student) {
-            cout << "Fail. "<< find_student <<" isn't enrolled in this class." << endl;
-            cout << "================" << endl;
 
         }
-
+      if(student_found == false){
+        cout << "Failed. " << find_student << " is not enrolled in the class." << endl;
       }
+
       cout << "Do you want to continue? (y/n): ";
       cin >> opt;
       opt = toupper(opt);
