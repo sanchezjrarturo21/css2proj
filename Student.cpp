@@ -18,6 +18,11 @@ using namespace std;
 
 // default constructor
 Student::Student(){
+  name = "N/A";
+  id = 0;
+  average = 0;
+  grade = 'F';
+  rank = 0;
 }
 
 // method sets student name
